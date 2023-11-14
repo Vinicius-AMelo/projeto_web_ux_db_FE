@@ -15,7 +15,7 @@ app.get('/database', (req, res) => {
 })
 
 try {
-    const response = axios.get(`http://projeto_web_ux_db_be.railway.internal::${port}/dinners`)
+    const response = axios.get(`http://projeto_web_ux_db_be.railway.internal:${port}/dinners`)
     console.log(response.data)
 } catch (error) {
     console.log(error)
