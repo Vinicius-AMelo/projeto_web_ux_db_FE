@@ -1,0 +1,11 @@
+#json-tree {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+#json-tree span {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+}
