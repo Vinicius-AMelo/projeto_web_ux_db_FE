@@ -1,7 +1,7 @@
 const WEB_Project = {
 
     async handleData() {
-        const response = await axios.get('http://localhost:5232/dinners');
+        const response = await axios.get('http://projeto_web_ux_db_be.railway.internal/dinners');
         console.log(response.data)
     },
 
