@@ -13,6 +13,8 @@ app.get('/database', (req, res) => {
     res.send([{name: 'Vinicius', age: 22}, {name: 'João', age: 23}])
 })
 
+const response = axios.get('http://projeto_web_ux_db_be.railway.internal/dinners')
+console.log(response.data)
 
 
 app.listen(port, () => {
