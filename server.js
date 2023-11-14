@@ -15,7 +15,7 @@ app.get('/database', (req, res) => {
 
 
 
-app.listen(3000, () => {
+app.listen(port, () => {
     console.log(`Servidor express rodando na porta ${port}`);
     console.log(`http://localhost:${port}`)
 })
