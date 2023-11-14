@@ -2,6 +2,7 @@ const WEB_Project = {
 
     async handleData() {
         const response = await axios.get('/backend');
+        console.log(response.data)
         response.data.forEach((item) => {
             document.getElementById('json-tree').appendChild(document.createElement('span')).innerHTML = `
                 <li><strong>Refeição:</strong> ${item.id}</li>
@@ -13,7 +14,7 @@ const WEB_Project = {
     },
 
     async init() {
-      await this.handleData();s
+      await this.handleData();
     },
 };
 
