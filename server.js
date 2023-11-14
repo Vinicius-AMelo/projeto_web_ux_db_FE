@@ -17,8 +17,8 @@ app.get('/database', (req, res) => {
 
 app.get('/backend', async (req, res)=> {
     try {
-        // const response = await axios.get(`http://projeto_web_ux_db_be.railway.internal:${backendPort}/dinners`)
-        const response = await axios.get(`http://localhost:7087/dinners`)
+        const response = await axios.get(`http://projeto_web_ux_db_be.railway.internal:${backendPort}/dinners`)
+        // const response = await axios.get(`http://localhost:7087/dinners`)
         res.send(response.data)
     } catch (error) {
         res.send(error)
