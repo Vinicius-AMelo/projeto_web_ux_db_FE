@@ -7,7 +7,7 @@ const WEB_Project = {
         response.data.forEach((item) => {
             $('.dinners').append(`
                 <li>
-                    <span><strong>Número da refeição:</strong> ${item.id}</span>
+                    <span><strong>Número da refeição:</strong> ${item.dinnerId}</span>
                     <span><strong>Registro do funcionário:</strong> ${item.employeeId}</span>
                     <span><strong>Cardápio do dia:</strong> ${item.menu}</span>
                     <span><strong>Data do registro:</strong> ${item.recordTime}</span>
