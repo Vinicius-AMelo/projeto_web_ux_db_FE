@@ -84,7 +84,7 @@ const WEB_Project = {
                 console.log(item)
                 if (item.checked) menu += `${$(item).attr('data-dinner')}: ${item.value}, `
             })
-            const employeeId = parseInt($(event.target).parents('.popup-confirm').attr('data-employee-id'));
+            const employeeId = 1;
             // const employeeId = Math.floor(Math.random() * (120 - 56 + 1)) + 56;
             const recordTime = this.handleDateTime();
             const body = {
