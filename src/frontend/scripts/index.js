@@ -44,18 +44,24 @@ const WEB_Project = {
             ]
         }
 
-
+        let count = 0;
 
         array.forEach((item) => {
-            $('.dinners tbody').append(`
-                <tr class="dinner">
-                    <td>${item.dinnerId}</td>
+            if (this.todayDate(item.recordTime)) {
+                count++;
+                $('.dinners tbody').append(`
+                    <tr class="dinner">
+                    <td>${count}</td>
                     <td>${item.employeeId}</td>
                     <td>${item.menu}</td >
-                    <td>${this.converterParaFormatoDesejado(item.recordTime)}</td>
-                </tr >
-            `)
+                    <td>${this.handleDateFormat(item.recordTime)}</td>
+                    </tr >
+                `)
+            }
         });
+
+        $('#count').html(count);
+
     },
 
 
@@ -107,7 +113,7 @@ const WEB_Project = {
 
         diasSemana.forEach((item) => {
             $('#week-cards').append(`
-    <span span class="day-cards ${item == diaSemana ? 'active' : ''}" data - weekday="${item}" data - menu="Frango a Parmeggiana" >
+                    <span span class="day-cards ${item == diaSemana ? 'active' : ''}" data - weekday="${item}" data - menu="Frango a Parmeggiana" >
                     <p>${item}</p>
                     <button>Registrar Refeição</button>
                 </span >
@@ -115,7 +121,7 @@ const WEB_Project = {
         });
     },
 
-    converterParaFormatoDesejado(dataISO) {
+    handleDateFormat(dataISO) {
         const opcoes = {
             weekday: 'long',
             day: 'numeric',
@@ -129,6 +135,17 @@ const WEB_Project = {
         const formatoDesejado = data.toLocaleDateString('pt-BR', opcoes);
 
         return formatoDesejado;
+    },
+
+    todayDate(dataISO) {
+        const dataFornecida = new Date(dataISO);
+        const hoje = new Date();
+
+        return (
+            dataFornecida.getDate() === hoje.getDate() &&
+            dataFornecida.getMonth() === hoje.getMonth() &&
+            dataFornecida.getFullYear() === hoje.getFullYear()
+        );
     },
 
     async init() {

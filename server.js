@@ -25,8 +25,8 @@ app.get('/cardapio', (req, res) => {
 
 app.get('/dinners', async (req, res) => {
     try {
-        const response = await axios.get(`http://projeto_web_ux_db_be.railway.internal:${backendPort}/dinners`)
-        // const response = await axios.get(`http://localhost:${backendPort}/dinners`)
+        // const response = await axios.get(`http://projeto_web_ux_db_be.railway.internal:${backendPort}/dinners`)
+        const response = await axios.get(`http://localhost:${backendPort}/dinners`)
         res.send(response.data)
     } catch (error) {
         res.send(error)
@@ -36,8 +36,8 @@ app.get('/dinners', async (req, res) => {
 app.post('/dinners', async (req, res) => {
     console.log(req.body)
     try {
-        const response = await axios.post(`http://projeto_web_ux_db_be.railway.internal:${backendPort}/dinners`, req.body)
-        // const response = await axios.post(`http://localhost:${backendPort}/dinners`, req.body)
+        // const response = await axios.post(`http://projeto_web_ux_db_be.railway.internal:${backendPort}/dinners`, req.body)
+        const response = await axios.post(`http://localhost:${backendPort}/dinners`, req.body)
         res.send(response.data)
     } catch (error) {
         res.send(error)

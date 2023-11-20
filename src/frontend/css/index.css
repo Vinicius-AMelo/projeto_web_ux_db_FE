@@ -97,9 +97,9 @@
 }
 
 table {
-    width: 100%;
+    width: max-content;
     border-collapse: collapse;
-    margin-top: 20px;
+    margin: 20px auto;
 }
 
 th, td {
@@ -263,4 +263,15 @@ th {
 
 .popup-success.countdown span {
     width: 0px;
+}
+
+.count {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+}
+
+.count span {
+    font-size: 28px;
 }
