@@ -75,6 +75,7 @@ const WEB_Project = {
 
 
     async handleSubmit() {
+        $('.menu-mobile').on('click', () => $('.menu-list').toggleClass('active'));
         $('#week-cards').on('click', '.day-cards.active button', () => $('#popup-overlay').addClass('active'));
 
         $('.popup-confirm button').on('click', async event => {

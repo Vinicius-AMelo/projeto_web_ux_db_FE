@@ -36,6 +36,7 @@
     position: fixed;
     left: 0px;
     top: 0px;
+    z-index: 20;
 }
 
 .sidebar-menu__icon {
@@ -83,6 +84,23 @@
 .sidebar-menu__logo img {
     width: 100%;
     height: 100%;
+}
+
+.menu-mobile {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 30px;
+    width: 30px;
+    margin: auto 16px auto 0px;
+}
+
+.menu-mobile span {
+    height: 2px;
+    background-color: #000000;
+    display: inline-block;
+    width: 100%;
 }
 
 .home-right {
@@ -292,4 +310,73 @@ th {
 
 .menu-day h2 {
     margin-bottom: 8px;
+}
+
+@media screen and (max-width: 600px) {
+    .home {
+        flex-direction: column;
+        max-width: 100vw;
+    }
+
+    .home-right {
+        width: 100%;
+        margin-left: 0px;
+        margin-top: 80px;
+        padding: 10px;
+    }
+
+    .count-container {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    table {
+        max-width: 100%;
+    }
+
+    .sidebar-menu {
+        width: 100%;
+        height: 80px;
+        padding: 10px;
+        flex-direction: row;
+    }
+
+    .sidebar-menu__icon {
+        width: 60px;
+        height: 60px;
+    }
+
+    .sidebar-menu__icon img {}
+
+    .sidebar-menu .menu-list {
+        position: fixed;
+        left: 10px;
+        top: 50px;
+        background: #ffffff;
+        box-shadow: 3px 3px 5px #000;
+        border-radius: 14px;
+        padding: 10px;
+        display: none;
+    }
+
+    .sidebar-menu .menu-list.active {
+        display: flex;
+    }
+
+    .sidebar-menu .menu-list__item *,
+    .sidebar-menu .menu-list__item {}
+
+    .sidebar-menu__logo {
+        margin-left: auto;
+    }
+
+    .sidebar-menu__logo img {}
+
+    .menu-mobile {
+        display: flex;
+    }
+
+    #week-cards {
+        justify-content: center;
+    }
 }
