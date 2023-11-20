@@ -20,7 +20,7 @@ app.get('/registros', (req, res) => {
     res.sendFile(__dirname + '/src/frontend/views/registros.html')
 })
 app.get('/cardapio', (req, res) => {
-    res.sendFile(__dirname + '/src/frontend/views/registros.html')
+    res.sendFile(__dirname + '/src/frontend/views/cardapio.html')
 })
 
 app.get('/dinners', async (req, res) => {

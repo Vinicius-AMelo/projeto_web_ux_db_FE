@@ -107,6 +107,7 @@ th, td {
     border: 1px solid #ddd;
     padding: 8px;
     text-align: left;
+    max-width: 200px;
 }
 
 th {
@@ -266,13 +267,29 @@ th {
     width: 0px;
 }
 
-.count {
+.count-container {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 16px;
 }
 
-.count span {
+.count-container span {
     font-size: 28px;
+}
+
+.menu-day {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin: 40px auto 0px;
+    max-width: 500px;
+    height: 100%;
+}
+
+.menu-day h2 {
+    margin-bottom: 8px;
 }

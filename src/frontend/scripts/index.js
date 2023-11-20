@@ -45,6 +45,9 @@ const WEB_Project = {
         }
 
         let count = 0;
+        let manha = 0;
+        let almoco = 0;
+        let tarde = 0;
 
         array.forEach((item) => {
             if (this.todayDate(item.recordTime)) {
@@ -58,9 +61,15 @@ const WEB_Project = {
                     </tr >
                 `)
             }
+
+            if (item.menu.includes('manhã')) manha++;
+            if (item.menu.includes('Almoço')) almoco++;
+            if (item.menu.includes('tarde')) tarde++;
         });
 
-        $('#count').html(count);
+        $('.count.manha').html(manha);
+        $('.count.almoco').html(almoco);
+        $('.count.tarde').html(count);
 
     },
 
@@ -76,7 +85,8 @@ const WEB_Project = {
                 if (item.checked) menu += `${$(item).attr('data-dinner')}: ${item.value}, `
             })
             const employeeId = parseInt($(event.target).parents('.popup-confirm').attr('data-employee-id'));
-            const recordTime = new Date().toISOString();
+            // const employeeId = Math.floor(Math.random() * (120 - 56 + 1)) + 56;
+            const recordTime = this.handleDateTime();
             const body = {
                 menu,
                 recordTime,
@@ -94,7 +104,10 @@ const WEB_Project = {
                 $('#popup-overlay').removeClass('active');
                 $('body').append(`<div div class="popup-success" ><p>Refeição registrada com sucesso!</p><span></span></div > `)
                 setTimeout(() => $('.popup-success').addClass('countdown'), 10)
-                setTimeout(() => $('.popup-success').remove(), 3000);
+                setTimeout(() => {
+                    $('.popup-success').remove()
+                    window.location.href = '/registros';
+                }, 3000);
 
 
                 this.handleData();
@@ -135,6 +148,29 @@ const WEB_Project = {
         const formatoDesejado = data.toLocaleDateString('pt-BR', opcoes);
 
         return formatoDesejado;
+    },
+
+    handleDateTime() {
+        function gerarHorarioAleatorio() {
+            const hora = 12;
+            const minutosAleatorios = Math.floor(Math.random() * 16); // entre 0 e 15
+            const minutos = 30 + minutosAleatorios;
+            return { hora, minutos };
+        }
+
+        // Obter a data de hoje
+        const dataAtual = new Date();
+
+        // Obter o horário aleatório
+        const { hora, minutos } = gerarHorarioAleatorio();
+
+        // Definir a hora na data de hoje
+        dataAtual.setHours(hora, minutos, 0, 0);
+
+        // Formatar a data no formato ISO
+        const dataFormatadaISO = dataAtual.toISOString();
+
+        return dataFormatadaISO;
     },
 
     todayDate(dataISO) {
