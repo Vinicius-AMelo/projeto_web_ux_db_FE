@@ -12,11 +12,18 @@ app.get('/', (req, res) => {
     res.sendFile(__dirname + '/src/frontend/views/index.html')
 })
 
-app.get('/database', (req, res) => {
-    res.send([{name: 'Vinicius', age: 22}, {name: 'João', age: 23}])
+app.get('/login', (req, res) => {
+    res.sendFile(__dirname + '/src/frontend/views/login.html')
 })
 
-app.get('/dinners', async (req, res)=> {
+app.get('/registros', (req, res) => {
+    res.sendFile(__dirname + '/src/frontend/views/registros.html')
+})
+app.get('/cardapio', (req, res) => {
+    res.sendFile(__dirname + '/src/frontend/views/registros.html')
+})
+
+app.get('/dinners', async (req, res) => {
     try {
         const response = await axios.get(`http://projeto_web_ux_db_be.railway.internal:${backendPort}/dinners`)
         // const response = await axios.get(`http://localhost:${backendPort}/dinners`)
@@ -26,7 +33,8 @@ app.get('/dinners', async (req, res)=> {
     }
 })
 
-app.post('/dinners', async (req, res)=> {
+app.post('/dinners', async (req, res) => {
+    console.log(req.body)
     try {
         const response = await axios.post(`http://projeto_web_ux_db_be.railway.internal:${backendPort}/dinners`, req.body)
         // const response = await axios.post(`http://localhost:${backendPort}/dinners`, req.body)

@@ -2,52 +2,144 @@ const WEB_Project = {
 
     async handleData() {
         const response = await axios.get('/dinners');
-        $('.dinners').html('');
-        if (!Array.isArray(response.data)) return;
-        response.data.forEach((item) => {
-            $('.dinners').append(`
-                <li>
-                    <span><strong>Número da refeição:</strong> ${item.dinnerId}</span>
-                    <span><strong>Registro do funcionário:</strong> ${item.employeeId}</span>
-                    <span><strong>Cardápio do dia:</strong> ${item.menu}</span>
-                    <span><strong>Data do registro:</strong> ${item.recordTime}</span>
-                </li>
+        $('.dinner').remove();
+        let array = response.data;
+        if (!Array.isArray(response.data)) {
+            array = [
+                {
+                    "dinnerId": 3,
+                    "menu": "Frango a Parmeggiana",
+                    "recordTime": "2023-11-14T19:19:58.021",
+                    "employeeId": 1,
+                    "employee": null
+                },
+                {
+                    "dinnerId": 5,
+                    "menu": "Frango a Parmeggiana",
+                    "recordTime": "2023-11-14T19:20:12.88",
+                    "employeeId": 1,
+                    "employee": null
+                },
+                {
+                    "dinnerId": 7,
+                    "menu": "Frango a Parmeggiana",
+                    "recordTime": "2023-11-14T19:22:26.804",
+                    "employeeId": 1,
+                    "employee": null
+                },
+                {
+                    "dinnerId": 9,
+                    "menu": "string",
+                    "recordTime": "2023-10-14T19:47:10.614",
+                    "employeeId": 1,
+                    "employee": null
+                },
+                {
+                    "dinnerId": 10,
+                    "menu": "Frango a Parmeggiana",
+                    "recordTime": "2023-11-14T19:47:46.701",
+                    "employeeId": 1,
+                    "employee": null
+                }
+            ]
+        }
+
+
+
+        array.forEach((item) => {
+            $('.dinners tbody').append(`
+                <tr class="dinner">
+                    <td>${item.dinnerId}</td>
+                    <td>${item.employeeId}</td>
+                    <td>${item.menu}</td >
+                    <td>${this.converterParaFormatoDesejado(item.recordTime)}</td>
+                </tr >
             `)
         });
     },
 
+
     async handleSubmit() {
-        $('#register-form').on('submit', async event => {
+        $('#week-cards').on('click', '.day-cards.active button', () => $('#popup-overlay').addClass('active'));
+
+        $('.popup-confirm button').on('click', async event => {
             event.preventDefault();
-            const menu = $('#menu option:selected').val();
-            const employeeId = parseInt($('#registry-number').val());
+            let menu = '';
+            $('input[type="checkbox"').each((index, item) => {
+                console.log(item)
+                if (item.checked) menu += `${$(item).attr('data-dinner')}: ${item.value}, `
+            })
+            const employeeId = parseInt($(event.target).parents('.popup-confirm').attr('data-employee-id'));
             const recordTime = new Date().toISOString();
             const body = {
-                    menu,
-                    recordTime,
-                    employeeId
+                menu,
+                recordTime,
+                employeeId
             }
             console.log(body)
 
-            const response = await axios.post('/dinners', body, {
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            });
-            console.log(response.data)
+            try {
+                // const response = await axios.post('/dinners', body, {
+                //     headers: {
+                //         'Content-Type': 'application/json'
+                //     }
+                // });
 
-            this.handleData();
+                $('#popup-overlay').removeClass('active');
+                $('body').append(`<div div class="popup-success" ><p>Refeição registrada com sucesso!</p><span></span></div > `)
+                setTimeout(() => $('.popup-success').addClass('countdown'), 10)
+                setTimeout(() => $('.popup-success').remove(), 3000);
+
+
+                this.handleData();
+            } catch (error) {
+                console.log(error)
+            }
+
         })
     },
 
+    async handleWeek() {
+        const diasSemana = ['Domingo', 'Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado'];
+
+        const dataAtual = new Date();
+        const diaSemana = diasSemana[dataAtual.getDay()];
+
+        diasSemana.forEach((item) => {
+            $('#week-cards').append(`
+    <span span class="day-cards ${item == diaSemana ? 'active' : ''}" data - weekday="${item}" data - menu="Frango a Parmeggiana" >
+                    <p>${item}</p>
+                    <button>Registrar Refeição</button>
+                </span >
+    `)
+        });
+    },
+
+    converterParaFormatoDesejado(dataISO) {
+        const opcoes = {
+            weekday: 'long',
+            day: 'numeric',
+            month: 'long',
+            year: 'numeric',
+            hour: 'numeric',
+            minute: 'numeric',
+        };
+
+        const data = new Date(dataISO);
+        const formatoDesejado = data.toLocaleDateString('pt-BR', opcoes);
+
+        return formatoDesejado;
+    },
+
     async init() {
-      await this.handleData();
-      await this.handleSubmit();
+        await this.handleData();
+        await this.handleSubmit();
+        await this.handleWeek();
     },
 };
 
 document.addEventListener('DOMContentLoaded', () => {
-    WEB_Project.init(); 
+    WEB_Project.init();
 });
 
 window.WEB_Project = WEB_Project;
