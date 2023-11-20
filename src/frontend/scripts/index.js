@@ -85,11 +85,11 @@ const WEB_Project = {
             console.log(body)
 
             try {
-                // const response = await axios.post('/dinners', body, {
-                //     headers: {
-                //         'Content-Type': 'application/json'
-                //     }
-                // });
+                await axios.post('/dinners', body, {
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
 
                 $('#popup-overlay').removeClass('active');
                 $('body').append(`<div div class="popup-success" ><p>Refeição registrada com sucesso!</p><span></span></div > `)
