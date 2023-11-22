@@ -312,6 +312,56 @@ th {
     margin-bottom: 8px;
 }
 
+#home-login {
+    background-color: #084F8C;
+    height: 100vh;
+}
+
+#login-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: auto;
+    gap: 40px;
+    width: 90%;
+    max-width: 500px;
+}
+
+#login-form>div {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    max-width: 500px;
+    color: #ffffff;
+    text-align: start;
+}
+
+#login-form input {
+    width: 100%;
+    border-radius: 20px;
+    font-size: 18px;
+    padding: 10px;
+    border: none;
+    margin: 10px auto 20px;
+}
+
+#login-form a {
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 400;
+    text-align: center;
+}
+
+#login-form button {
+    color: #ffffff;
+    background-color: #E26C00;
+    border-radius: 100px;
+    border: none;
+    padding: 8px 20px;
+    width: 200px;
+    cursor: pointer;
+}
+
 @media screen and (max-width: 600px) {
     .home {
         flex-direction: column;

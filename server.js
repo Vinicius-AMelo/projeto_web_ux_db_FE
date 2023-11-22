@@ -9,11 +9,11 @@ app.use(express.static(path.join(__dirname, 'src/frontend')));
 app.use(express.json());
 
 app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/src/frontend/views/index.html')
+    res.sendFile(__dirname + '/src/frontend/views/login.html')
 })
 
-app.get('/login', (req, res) => {
-    res.sendFile(__dirname + '/src/frontend/views/login.html')
+app.get('/registrar', (req, res) => {
+    res.sendFile(__dirname + '/src/frontend/views/index.html')
 })
 
 app.get('/registros', (req, res) => {

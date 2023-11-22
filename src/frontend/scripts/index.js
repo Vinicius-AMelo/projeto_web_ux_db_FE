@@ -185,6 +185,10 @@ const WEB_Project = {
         );
     },
 
+    handleLogin() {
+        $();
+    },
+
     async init() {
         await this.handleData();
         await this.handleSubmit();
