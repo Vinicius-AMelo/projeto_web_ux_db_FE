@@ -435,6 +435,7 @@ th {
 
     .sidebar-menu__logo {
         margin-left: auto;
+        margin-top: 0px;
     }
 
     .sidebar-menu__logo img {}
