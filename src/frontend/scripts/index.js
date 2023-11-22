@@ -60,11 +60,13 @@ const WEB_Project = {
                     <td>${this.handleDateFormat(item.recordTime)}</td>
                     </tr >
                 `)
+
+                if (item.menu.includes('manhã')) manha++;
+                if (item.menu.includes('Almoço')) almoco++;
+                if (item.menu.includes('tarde')) tarde++;
             }
 
-            if (item.menu.includes('manhã')) manha++;
-            if (item.menu.includes('Almoço')) almoco++;
-            if (item.menu.includes('tarde')) tarde++;
+
         });
 
         $('.count.manha').html(manha);
