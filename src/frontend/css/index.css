@@ -75,10 +75,22 @@
     display: block;
 }
 
+.sidebar-menu .menu-list__item:not(.logout).active,
+.sidebar-menu .menu-list__item:not(.logout).active * {
+    background-color: #d9d9d9;
+}
+
+.menu-list__item.logout *,
+.menu-list__item.logout {
+    background-color: #E26C00;
+    margin-top: auto;
+    color: #FFFFFF;
+}
+
 .sidebar-menu__logo {
     width: 200px;
     height: 66px;
-    margin-top: auto;
+    margin-top: 20px;
 }
 
 .sidebar-menu__logo img {

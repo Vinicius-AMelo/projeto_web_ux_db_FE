@@ -107,7 +107,8 @@ const WEB_Project = {
                 setTimeout(() => $('.popup-success').addClass('countdown'), 10)
                 setTimeout(() => {
                     $('.popup-success').remove()
-                    window.location.href = '/registros';
+                    $('.day-cards ').removeClass('active')
+                    // window.location.href = '/registros';
                 }, 3000);
 
 
@@ -185,14 +186,31 @@ const WEB_Project = {
         );
     },
 
+    handleMenuButton() {
+        $('.menu-list__item a').each((index, item) => {
+            if (window.location.href.includes(item.href)) {
+                $(item).parent().addClass('active');
+            }
+        });
+    },
+
     handleLogin() {
-        $();
+        $('#login-form').on('submit', (event) => {
+            event.preventDefault();
+            if ($('#register').val() == 'admin' && $('#password').val() == 'admin') {
+                window.location.href = '/registros';
+            } else {
+                window.location.href = '/registrar';
+            }
+        });
     },
 
     async init() {
         await this.handleData();
         await this.handleSubmit();
         await this.handleWeek();
+        this.handleMenuButton();
+        this.handleLogin();
     },
 };
 
